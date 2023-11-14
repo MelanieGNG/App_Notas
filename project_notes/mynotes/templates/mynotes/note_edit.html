@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Tus etiquetas de meta, title, etc -->
+    <title>Edit Note</title>
+    <style>
+        a {
+            color: blue;
+            display: inline-block;
+            padding: 7px 14px;
+            background-color: #ffffff;
+            color: #800080; 
+            text-decoration: none;
+            border: 2px solid #800080; 
+            border-radius: 5px;
+            cursor: pointer;
+            
+            }
+    
+            .contenedor {
+                text-align: center;
+                min-height: 250px;
+                margin: 0 auto;
+                width: 800px;
+                background-color: #D797E0
+            }
+
+            .contenedor button[type="submit"] {
+                background-color: #800080;
+                color: #ffffff;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer; 
+            }
+    
+            .contenedor button[type="submit"]:hover {
+                background-color: #0056b3; 
+            }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <br>
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

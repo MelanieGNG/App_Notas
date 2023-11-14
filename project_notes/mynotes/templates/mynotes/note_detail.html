@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>{{ note.title }}</title>
+
+    <style>
+
+            a {
+            color: blue;
+            display: inline-block;
+            padding: 7px 14px;
+            background-color: #800080;
+            color: #ffffff; 
+            text-decoration: none;
+            border: 2px solid #800080; 
+            border-radius: 5px;
+            cursor: pointer;
+            
+            }
+                
+            .contenedor {
+                text-align: center;
+                min-height: 250px;
+                margin: 0 auto;
+                width: 800px;
+                background-color: #D797E0
+            }
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'mynotes:index' %}">Ir al Inicio</a>
+
+    <div class="contenedor">
+        <div>
+            <br>
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.content }}</p>
+            <br>
+            <br>
+
+            <div>
+                <a href="{% url 'mynotes:edit' note.id %}">Editar</a>
+                <a href="#" data-toggle="modal" data-target="#deleteModal">Eliminar</a>
+
+                <!-- Modal structure -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Eliminar</h5>
+                                <button type="button" data-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Estás seguro de eliminar "{{ note.title }}"?
+                            </div>
+                            <div class="modal-footer">
+                                <form method="post" action="{% url 'mynotes:delete' note.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit">Aceptar</button>
+                                    <button type="button" data-dismiss="modal">Cancelar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Necessary scripts for Bootstrap functionality -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

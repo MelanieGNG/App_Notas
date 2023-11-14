@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Tus etiquetas de meta, title, etc -->
+    <title>Notes List</title>
+    <style>
+        a {
+            color: blue;
+            display: inline-block;
+            padding: 7px 14px;
+            background-color: #ffffff;
+            color: #800080; 
+            text-decoration: none;
+            border: 2px solid #800080; 
+            border-radius: 5px;
+            cursor: pointer;
+            
+            }
+
+        .btn {
+             display: inline-block;
+             padding: 10px 20px;
+             background-color: #800080;
+             color: #ffffff; 
+             text-decoration: none;
+             border: 2px solid #800080; 
+             border-radius: 5px;
+             cursor: pointer;
+             }
+            
+            .btn:hover {
+                background-color: #FFFA29; 
+                color: #000000; 
+            }
+    
+            .contenedor {
+                text-align: center;
+                min-height: 250px;
+                margin: 0 auto;
+                width: 800px;
+                background-color: #D797E0
+            }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+
+     <h1>Mis Notas</h1>
+     <br>
+
+    {% for note in object_list %}
+        <a href="{% url 'mynotes:detail' note.id %}">{{ note.title }}</a>  
+        <p>{{ note.creation_date }}</p>
+        <br>
+        <br>
+    {% endfor %}
+    
+    <br>
+    <br>
+
+    <a href="{% url 'mynotes:create' %}" class="btn btn-primary">Create New</a>
+    </div>
+
+</body>
+</html>
